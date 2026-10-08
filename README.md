@@ -35,6 +35,14 @@ consistent structure, tests, and CI from day one.
 
 ---
 
+### Side projects
+
+| Project | Problem → Solution | Stack |
+|---|---|---|
+| [**fantasy-football-analytics**](https://github.com/cesucede17/fantasy-football-analytics) | Financial decision-making under uncertainty (bid pricing, exit timing, risk sizing) applied to a fantasy sports market — scraped public data only, no official app access | Python, requests/BeautifulSoup, pandas, Google Sheets, GitHub Actions |
+
+---
+
 ### Stack
 
 **Data & ML**
