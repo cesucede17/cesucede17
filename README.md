@@ -9,7 +9,7 @@ rigorous. The domain knowledge didn't get left behind — it's the advantage.
 - 🔭 Currently building ML and data-platform tooling at CIRCE (energy & environment technology center)
 - 🌱 MSc in Energy Engineering + MBA; background in process/energy auditing before the move to data
 - 🛠️ Python, SQL/PostgreSQL, scikit-learn, PyTorch, FastAPI, Streamlit, Power BI
-- 📄 Co-author of a peer-reviewed paper on PV-optimized irrigation scheduling ([TODO: add direct link/DOI] — full publication list on ORCID below)
+- 📄 Co-author of a peer-reviewed paper on PV-optimized irrigation scheduling (full publication list on ORCID below)
 - 🤝 Contributor on EU-funded R&D projects
 - 💬 Ask me about the engineering-to-data transition, or anything in the projects below
 - 📫 [LinkedIn](https://www.linkedin.com/in/cesar-suela) · [ORCID](https://orcid.org/0009-0007-5128-636X) · [suelacesar17@gmail.com](mailto:suelacesar17@gmail.com)
@@ -58,5 +58,5 @@ consistent structure, tests, and CI from day one.
 ---
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=cesucede17&show_icons=true&theme=default&hide_border=true&hide_title=true" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=cesucede17&show_icons=true&count_private=true&include_all_commits=true&theme=default&hide_border=true&hide_title=true" />
 </p>
