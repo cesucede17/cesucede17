@@ -1,6 +1,6 @@
 # Hi, I'm Cesar 👋
 
-**Data Analyst / Data Engineer with a background in energy engineering.**
+**Data Analyst / Energy Engineer**
 
 I spent the first part of my career designing and auditing energy systems; now I build the data
 pipelines, models, and tools that make that kind of engineering decision-making faster and more
