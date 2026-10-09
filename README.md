@@ -92,13 +92,11 @@ Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering
 
 ---
 
-### 👁️ Profile Visits
+### 👁️ Profile Views
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Courier+New&size=24&duration=2000&pause=100&color=1F6FEB&center=true&width=300&height=50&lines=👀+Profile+views%3A;🔥+43%2B+visitors" alt="Profile views counter" />
-
-![Profile views](https://komarev.com/ghpvc/?username=cesucede17&color=0366d6&style=for-the-badge&label=VISITS&base=43)
+<img src="https://img.shields.io/badge/Profile%20Views-43%2B-1F6FEB?style=for-the-badge&logo=eye&logoColor=white" alt="Profile views" />
 
 </div>
 
@@ -108,7 +106,7 @@ Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering
 
 <div align="center">
 
-![GitHub contribution grid snake animation](https://raw.githubusercontent.com/cesucede17/cesucede17/output/github-contribution-grid-snake.svg)
+<img src="https://raw.githubusercontent.com/cesucede17/cesucede17/output/github-contribution-grid-snake.svg" alt="Contribution Snake" width="100%" />
 
 </div>
 
