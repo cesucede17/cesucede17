@@ -76,5 +76,44 @@ Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering
 **BI & Tooling**
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=flat&logo=powerbi&logoColor=black)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=)
-
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
+
+</div>
+
+---
+
+### 📊 GitHub statistics
+
+<div align="center">
+
+[![GitHub stats](https://github-readme-stats.vercel.app/api?username=cesucede17&show_icons=true&count_private=true&include_all_commits=true&theme=github_dark&hide_border=true&hide_title=true)](https://github.com/cesucede17)
+
+</div>
+
+---
+
+### 👁️ Profile Views
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Courier+New&size=28&duration=2000&pause=500&color=1F6FEB&center=true&width=400&height=60&lines=👀+Profile+Views;🔥+43%2B+Visitors;⚡+Keep+Building" alt="Profile views counter" />
+
+</div>
+
+---
+
+### 🐍 Contribution Snake
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/cesucede17/cesucede17/output/github-contribution-grid-snake-dark.svg" alt="Contribution Snake" width="100%" />
+
+</div>
+
+---
+
+<div align="center">
+
+**Let's build something meaningful with data and energy intelligence** 🚀⚡
+
+</div>
