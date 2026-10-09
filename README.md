@@ -96,7 +96,7 @@ Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering
 
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Courier+New&size=28&duration=2000&pause=500&color=1F6FEB&center=true&width=400&height=60&lines=👀+Profile+Views;🔥+43%2B+Visitors;⚡+Keep+Building" alt="Profile views counter" />
+<img src="https://raw.githubusercontent.com/cesucede17/cesucede17/main/dist/views-counter.svg" alt="Profile views counter" width="400" />
 
 </div>
 
