@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="60" viewBox="0 0 400 60">
+  <defs>
+    <style>
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+      }
+      .counter-text {
+        font-family: 'Courier New', monospace;
+        font-size: 24px;
+        font-weight: bold;
+        fill: #1F6FEB;
+        animation: pulse 2s infinite;
+      }
+      .label-text {
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+        fill: #888;
+      }
+    </style>
+  </defs>
+  <rect width="400" height="60" fill="transparent"/>
+  <text x="20" y="35" class="label-text">👀 Profile Views:</text>
+  <text x="200" y="35" class="counter-text">43+ 🔥</text>
+  <text x="20" y="55" class="label-text">⚡ Keep Building</text>
+</svg>
