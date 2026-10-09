@@ -86,7 +86,7 @@ Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering
 
 <div align="center">
 
-[![GitHub stats](https://github-readme-stats.vercel.app/api?username=cesucede17&show_icons=true&count_private=true&include_all_commits=true&theme=default&hide_border=true&hide_title=true)](https://github.com/cesucede17)
+[![GitHub stats](https://github-readme-stats.vercel.app/api?username=cesucede17&show_icons=true&count_private=true&include_all_commits=true&theme=github_dark&hide_border=true&hide_title=true)](https://github.com/cesucede17)
 
 </div>
 
@@ -96,7 +96,7 @@ Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering
 
 <div align="center">
 
-<img src="https://img.shields.io/badge/Profile%20Views-43%2B-1F6FEB?style=for-the-badge&logo=eye&logoColor=white" alt="Profile views" />
+<img src="https://readme-typing-svg.demolab.com?font=Courier+New&size=28&duration=2000&pause=500&color=1F6FEB&center=true&width=400&height=60&lines=👀+Profile+Views;🔥+43%2B+Visitors" alt="Profile views counter" />
 
 </div>
 
