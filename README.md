@@ -40,7 +40,6 @@ I spent the first part of my career designing and auditing energy systems; now I
 | Project | Problem → Solution | Stack |
 |---|---|---|
 | [**regulatory-rag-chatbot**](https://github.com/cesucede17/regulatory-rag-chatbot) | RAG chatbot over public legislation + private technical docs, with automated regulatory-change detection | Python, LLM, RAG, FastAPI |
-| [**baseline-trend-analysis**](https://github.com/cesucede17/baseline-trend-analysis) | IPMVP-compliant energy baseline regression engine with full diagnostic validation | Python, scikit-learn, Statistics |
 | [**report-generator**](https://github.com/cesucede17/report-generator) | End-to-end audit workflow (ISO 50001) with AI-assisted drafting and native OOXML `.docx` export | Python, FastAPI, OOXML |
 | [**modular-platform-portal**](https://github.com/cesucede17/modular-platform-portal) | A gateway in front of independent internal tools — SSO, a shared catalog, and cross-tool status signals | FastAPI, PostgreSQL, Auth |
 
