@@ -79,17 +79,6 @@ Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 
 </div>
-
----
-
-### 📊 GitHub statistics
-
-<div align="center">
-
-[![GitHub stats](https://github-readme-stats.vercel.app/api?username=cesucede17&show_icons=true&count_private=true&include_all_commits=true&theme=github_dark&hide_border=true&hide_title=true)](https://github.com/cesucede17)
-
-</div>
-
 ---
 
 ### 👁️ Profile Views
