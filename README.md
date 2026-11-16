@@ -42,6 +42,7 @@ I spent the first part of my career designing and auditing energy systems; now I
 | [**regulatory-rag-chatbot**](https://github.com/cesucede17/regulatory-rag-chatbot) | RAG chatbot over public legislation + private technical docs, with automated regulatory-change detection | Python, LLM, RAG, FastAPI |
 | [**report-generator**](https://github.com/cesucede17/report-generator) | End-to-end audit workflow (ISO 50001) with AI-assisted drafting and native OOXML `.docx` export | Python, FastAPI, OOXML |
 | [**modular-platform-portal**](https://github.com/cesucede17/modular-platform-portal) | A gateway in front of independent internal tools — SSO, a shared catalog, and cross-tool status signals | FastAPI, PostgreSQL, Auth |
+| [**second-brain**](https://github.com/cesucede17/second-brain) | Scattered folders of documents → an Obsidian second brain built and kept up to date by a Claude Code skill (`/brain`) | Python, Claude Code, Obsidian |
 
 Also: [**ml-engineering-playbook**](https://github.com/cesucede17/ml-engineering-playbook) and [**platform-engineering-playbook**](https://github.com/cesucede17/platform-engineering-playbook).
 
