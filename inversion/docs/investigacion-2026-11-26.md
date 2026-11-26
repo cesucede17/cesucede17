@@ -85,3 +85,36 @@ Lo que hay que adaptar y dejar escrito en el ADR 0001:
 - **Ghostfolio** y **Portfolio Performance**: hay un fork de pytr (`pytrpp2`) que exporta a formato Portfolio Performance.
 
 No he comprobado estrellas, mantenimiento ni licencias de cada repo. Se revisan antes de copiar nada.
+
+## 4. Raspberry Pi 5 o mini PC (Black Friday 2026)
+
+No he encontrado ofertas de Black Friday confirmadas en España para estas configuraciones. Los precios son los que aparecen en las tiendas y comparadores a finales de noviembre de 2026. Los de los accesorios son aproximados.
+
+| | A) Pi 5 de 8 GB + SSD | B) Mini PC N150 16 GB / 512 GB | C) Mini PC Ryzen 7 32 GB |
+|---|---|---|---|
+| Equipo | Placa: 146 € (lo más barato en Amazon) – 230 € (tiendas oficiales) | 285–305 € (p. ej. Blackview MP60 a 304,99 € en PcComponentes); en EE. UU. el Beelink EQ14 está a 379 $ (-15 %) | 500–900 € |
+| Extras | Fuente ~13 € + ventilador ~6 € + carcasa ~10–15 € + SSD Kit 256 GB ~55 € | Incluidos (fuente, SSD, carcasa) | Incluidos |
+| **Total** | **~230–320 €** | **~285–305 €** | **~500–900 €** |
+| Consumo en reposo (estimado) | ~3–5 W → ~6 €/año | ~6–10 W → ~13 €/año | ~10–15 W → ~20 €/año |
+| RAM | 8 GB soldada | 16 GB (ampliable a 32 GB en el GMKtec G3 Plus) | 32 GB |
+| Arquitectura | ARM (incidencias con Claude Code) | x86 (lo mismo que el CI y Docker) | x86 |
+| IA en local | No | Modelos pequeños, lentos | Sí, modelos medianos |
+
+(Electricidad calculada a 0,18 €/kWh.)
+
+**Recomendación:** un mini PC N150 con 16 GB y 512 GB. Por un precio parecido al de la Pi completa:
+- tiene el doble de RAM;
+- es x86, así que no tiene los problemas de Claude Code en ARM y Docker usa las mismas imágenes que el CI;
+- el SSD se puede ampliar, y la RAM también en algunos modelos;
+- la diferencia de luz frente a la Pi es de unos 7 € al año.
+
+**Modelos:**
+- **GMKtec G3 Plus:** RAM ampliable.
+- **Beelink EQ14:** fuente integrada y doble puerto de red de 2,5 GbE.
+
+**Cuándo comprar:**
+- ≤ 250 € → buena oferta, comprar.
+- 250–300 € → precio normal.
+- > 300 € → esperar o volver a la Pi.
+
+Comprar en Amazon.es (vendido o enviado por Amazon) o en PcComponentes, por la devolución de 30 días y la garantía europea de 3 años. Se le borra Windows y se instala Ubuntu Server 24.04 LTS.
