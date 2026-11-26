@@ -1,0 +1,17 @@
+# Copia este archivo como finanzas.yaml y pon tus datos (está en .gitignore).
+
+banco_por_defecto: bbva      # banco que se asigna al apuntar un gasto rápido
+
+bancos:
+  bbva:           {nombre: "BBVA",           emoji: "🔵", uso: "cuenta nómina y tarjeta del día a día"}
+  myinvestor:     {nombre: "MyInvestor",     emoji: "🟢", uso: "fondos indexados / cuenta remunerada"}
+  trade_republic: {nombre: "Trade Republic", emoji: "⚫", uso: "ETFs / cuenta con intereses"}
+
+# Se apuntan solos el día indicado de cada mes (si el mes es más corto, el último día).
+ingresos_fijos:
+  - {concepto: "Nómina", importe: 1800, dia: 28, banco: bbva}
+
+gastos_fijos:
+  - {concepto: "Wifi",     categoria: wifi_movil,    importe: 30, dia: 1,  banco: bbva}
+  - {concepto: "Gimnasio", categoria: gimnasio,      importe: 35, dia: 1,  banco: bbva}
+  - {concepto: "Netflix",  categoria: suscripciones, importe: 13, dia: 15, banco: bbva}

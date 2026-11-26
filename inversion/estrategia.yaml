@@ -21,6 +21,9 @@ banda_rebalanceo: 5
 aportacion_mensual: 300
 dia_aportacion: 5               # día del mes en que el bot te lo recuerda
 
+# Meses de gastos que debe cubrir la liquidez antes de invertir más
+fondo_emergencia_meses: 6
+
 # Horas que debe esperar cualquier operación fuera del plan
 enfriamiento_horas: 72
 

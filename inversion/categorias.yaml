@@ -1,0 +1,17 @@
+# Categorías de gasto. Añade, quita o renombra libremente.
+#   tipo:       variable | fijo | aportacion  (aportacion = dinero que va a inversión, NO es gasto)
+#   naturaleza: esencial | prescindible       (sirve para saber dónde recortar)
+#   presupuesto: euros/mes (0 = sin presupuesto todavía; se propondrá con tus datos)
+categorias:
+  super:         {nombre: "Supermercado",  emoji: "🛒", tipo: variable, naturaleza: esencial,     presupuesto: 0}
+  comida_fuera:  {nombre: "Comida fuera",  emoji: "🍽️", tipo: variable, naturaleza: prescindible, presupuesto: 0}
+  gimnasio:      {nombre: "Gimnasio",      emoji: "🏋️", tipo: fijo,     naturaleza: prescindible, presupuesto: 0}
+  ocio:          {nombre: "Ocio",          emoji: "🎉", tipo: variable, naturaleza: prescindible, presupuesto: 0}
+  wifi_movil:    {nombre: "Wifi / móvil",  emoji: "📶", tipo: fijo,     naturaleza: esencial,     presupuesto: 0}
+  medicacion:    {nombre: "Medicación",    emoji: "💊", tipo: variable, naturaleza: esencial,     presupuesto: 0}
+  autocuidado:   {nombre: "Autocuidado",   emoji: "💆", tipo: variable, naturaleza: prescindible, presupuesto: 0}
+  vivienda:      {nombre: "Vivienda",      emoji: "🏠", tipo: fijo,     naturaleza: esencial,     presupuesto: 0}
+  transporte:    {nombre: "Transporte",    emoji: "🚌", tipo: variable, naturaleza: esencial,     presupuesto: 0}
+  suscripciones: {nombre: "Suscripciones", emoji: "📺", tipo: fijo,     naturaleza: prescindible, presupuesto: 0}
+  otros:         {nombre: "Otros",         emoji: "❓", tipo: variable, naturaleza: prescindible, presupuesto: 0}
+  inversiones:   {nombre: "Inversiones",   emoji: "📈", tipo: aportacion}

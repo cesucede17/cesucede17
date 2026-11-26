@@ -5,7 +5,7 @@
 #         Usa "CASH" para efectivo.
 # clase:  una de las claves de "objetivo" en estrategia.yaml
 carteras:
-  - nombre: "Broker indexados"
+  - nombre: "MyInvestor"
     posiciones:
       - ticker: IWDA.AS
         nombre: "iShares Core MSCI World"
@@ -22,7 +22,7 @@ carteras:
         clase: renta_fija
         participaciones: 300
         precio: 4.95
-  - nombre: "Cuenta remunerada"
+  - nombre: "Trade Republic (cuenta)"
     posiciones:
       - ticker: CASH
         nombre: "Efectivo"

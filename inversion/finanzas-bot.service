@@ -1,0 +1,19 @@
+# Servicio systemd para la Raspberry Pi.
+# Instalar:  sudo cp finanzas-bot.service /etc/systemd/system/
+#            sudo systemctl enable --now finanzas-bot
+# Ver logs:  journalctl -u finanzas-bot -f
+[Unit]
+Description=Bot de finanzas personales (Telegram)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/finanzas/inversion
+EnvironmentFile=/home/pi/finanzas/inversion/.env
+ExecStart=/home/pi/finanzas/.venv/bin/python bot.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

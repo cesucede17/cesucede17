@@ -195,11 +195,17 @@ Se comparan **Claude Opus 5.5, Claude Sonnet 5.5 y Claude Haiku 5.5** con tus da
 
 ---
 
+## Decisiones tomadas
+- **Ingresos:** nómina fija mensual. Se apunta sola (`finanzas.yaml`).
+- **Bancos:** BBVA (nómina y tarjeta), MyInvestor y Trade Republic. Una transferencia de BBVA a MyInvestor o Trade Republic se clasifica como **aportación** si va a inversión, o como **movimiento interno** si va a la cuenta de liquidez. Nunca cuenta como gasto.
+- **IA:** tu suscripción a través de Claude Code, con escalera de modelos y periodo de prueba.
+- **Fase 1 hecha:** gastos con botones, SQLite, ingresos, fijos, `/mes`, `/balance` con fondo de emergencia, menú fijo y servicio systemd.
+
 ## Decisiones abiertas (para ajustar)
-1. **Ingresos:** ¿una nómina fija al mes o ingresos variables?
+1. ~~Ingresos~~ → nómina fija. ¿Hay pagas extra (junio/diciembre)?
 2. **Presupuestos:** ¿los pongo yo a partir de 1–2 meses de datos, o los defines tú desde el principio?
 3. **Gastos con tarjeta:** ¿basta con apuntarlos a mano, o quieres importar el CSV del banco (y de qué banco)?
 4. **¿Solo tú,** o también gastos compartidos (pareja o piso) con reparto?
 5. **Cuentas de liquidez:** ¿cuántas cuentas o bancos hay que tener en cuenta para el fondo de emergencia?
 6. ~~Modelo de IA~~ → **decidido:** escalera dinámica + periodo de prueba Opus 5.5 / Sonnet 5.5 / Haiku 5.5. Conexión: **tu suscripción** a través de Claude Code (opción A). Falta: ¿qué plan tienes (Pro, Max…)?
-7. **Bancos:** son varios. ¿Cuáles son? Así preparo las pistas de cada uno en `bancos.yaml` y miro cuáles permiten exportar CSV.
+7. ~~Bancos~~ → BBVA, MyInvestor y Trade Republic.

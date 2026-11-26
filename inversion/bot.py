@@ -1,4 +1,4 @@
-"""Bot de Telegram para consultar la cartera y respetar la estrategia.
+"""Bot de Telegram: gastos del día a día + cartera y estrategia de inversión.
 
 Variables de entorno:
   TELEGRAM_TOKEN    token de @BotFather
@@ -15,6 +15,7 @@ from datetime import time
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, filters
 
+import bot_gastos
 import core
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -23,8 +24,14 @@ TOKEN = os.environ.get("TELEGRAM_TOKEN", "")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 SOLO_YO = filters.Chat(chat_id=int(CHAT_ID)) if CHAT_ID else filters.ALL
 
-AYUDA = """<b>📈 Módulo de inversión</b>
+AYUDA = """<b>💶 Gastos</b>
+Escribe un importe (<code>12,50 menú</code>) y elige la categoría con un botón.
+/mes – gastos del mes por categoría (o /mes 2026-10)
+/balance – ingresos, gastos, ahorro y fondo de emergencia
+/ingreso 1800 nómina – apuntar un ingreso
+/ultimos · /borrar N – revisar o borrar movimientos
 
+<b>📈 Inversión</b>
 /resumen – valor y reparto actual vs objetivo
 /carteras – detalle de posiciones por cartera
 /estrategia – mi plan y reglas fijas
@@ -68,7 +75,7 @@ def texto_resumen() -> str:
 
 
 async def cmd_start(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
-    await responder(update, AYUDA)
+    await update.effective_message.reply_html(AYUDA, reply_markup=bot_gastos.MENU)
 
 
 async def cmd_id(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
@@ -242,7 +249,10 @@ def main() -> None:
         "descartada": cmd_descartada, "diario": cmd_diario,
     }.items():
         app.add_handler(CommandHandler(nombre, fn, filters=SOLO_YO))
+    bot_gastos.registrar_handlers(app, SOLO_YO, texto_resumen)
     app.job_queue.run_daily(tarea_diaria, time=time(hour=9, minute=0))
+    app.job_queue.run_daily(bot_gastos.tarea_fijos, time=time(hour=8, minute=0))
+    app.job_queue.run_once(bot_gastos.tarea_fijos, when=5)  # por si la Raspberry estaba apagada a las 8
     logging.info("Bot en marcha")
     app.run_polling()
 
