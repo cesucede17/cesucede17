@@ -84,6 +84,41 @@ Se añade:
 - el histórico mensual del valor;
 - la rentabilidad acumulada frente a lo aportado.
 
+### Módulo 3: Asistente IA (Claude)
+
+Usa la **API de Claude** desde la Raspberry (SDK oficial `anthropic` en Python). Tiene tres funciones.
+
+**a) Lectura de tickets** (foto o PDF de un ticket de compra)
+- Claude extrae en JSON estructurado: comercio, fecha, total y **las líneas del ticket**.
+  - Cada línea se clasifica en una categoría. Un ticket del súper puede repartirse entre 🛒 Comida, 💆 Autocuidado y 💊 Medicación.
+- El bot enseña el resultado con botones `✅ Guardar` · `✏️ Corregir` · `❌ Descartar`. **Nunca guarda nada sin tu confirmación.**
+- Las correcciones se guardan como ejemplos ("en Mercadona, el champú es Autocuidado"), para que la próxima vez acierte más.
+
+**b) Capturas de movimientos** (captura de la app del banco o del extracto)
+- Claude saca todos los movimientos de la imagen y propone una categoría para cada uno.
+- El bot **detecta duplicados** con lo que ya está registrado (mismo importe, fecha y comercio) y te pide confirmar la lista.
+- Así cuadras los gastos con tarjeta que no apuntaste a mano.
+
+**c) Preguntas en lenguaje natural**
+- Ejemplos: *"¿cuánto gasté en ocio este trimestre comparado con el anterior?"*, *"¿cuánto puedo invertir este mes sin tocar el fondo de emergencia?"*, *"¿qué pasa si subo la renta fija al 20 %?"*.
+- Claude **no ve la base de datos directamente**. Usa herramientas de solo lectura que define el bot:
+  - `gastos_por_categoria(desde, hasta)`
+  - `balance_mes(mes)`
+  - `estado_cartera()`
+  - `estrategia()`
+  - `simular_estrategia(cambios)`
+- **Ajustar parámetros de inversión:** Claude puede *proponer* un cambio en `estrategia.yaml` con su simulación (cómo quedaría el reparto, las aportaciones y el rebalanceo). La propuesta **pasa por la misma espera de 72 h** que cualquier operación. Claude nunca modifica la estrategia ni registra operaciones por su cuenta.
+- Las instrucciones de Claude lo atan a tu estrategia escrita: responde con tus datos y reglas, y no da recomendaciones de compra o venta de valores concretos.
+
+**Coste y privacidad**
+- Hace falta una **clave de API** de console.anthropic.com. Se paga por uso con saldo prepago, y se puede poner un **límite de gasto mensual** en la consola.
+  - La suscripción de claude.ai (la cuenta con la que hablas conmigo) **no sirve** para que un bot llame a Claude: se factura aparte.
+- Modelo por defecto: **Claude Opus 5.5** ($4 / $20 por millón de tokens de entrada/salida).
+  - Estimación: unos **0,03 $ por ticket** y unos **0,05 $ por pregunta**. Con 60 tickets y 50 preguntas al mes salen **unos 4–5 $/mes**.
+  - Opción más barata: **Claude Haiku 5.5** ($0,10 / $0,50), unas 40 veces menos (céntimos al mes). Es algo menos preciso con tickets difíciles.
+- Las fotos y los datos que se consultan se envían a la API de Anthropic para procesarlos. La base de datos completa sigue en la Raspberry.
+- La clave se guarda en un archivo `.env` de la Raspberry, nunca en el repositorio.
+
 ### Interfaz del bot
 - **Menú fijo** con 4 botones: `➕ Gasto` · `📊 Mes` · `⚖️ Balance` · `💼 Inversión`.
 - Cada sección tiene submenús con botones dentro del propio mensaje. Los comandos `/…` siguen funcionando como atajo.
@@ -105,6 +140,7 @@ Se añade:
 2. **Control:** presupuestos, gastos fijos recurrentes, avisos, `/recortar` y gráficos.
 3. **Puente:** balance, tasa de ahorro, fondo de emergencia, Inversiones como aportación y patrimonio neto.
 4. **Raspberry:** systemd, copias de seguridad y panel ampliado con gastos e histórico.
+5. **IA:** lectura de tickets → capturas del banco con detección de duplicados → preguntas con herramientas → propuestas de ajuste de la estrategia con espera de 72 h.
 
 ---
 
@@ -114,3 +150,5 @@ Se añade:
 3. **Gastos con tarjeta:** ¿basta con apuntarlos a mano, o quieres importar el CSV del banco (y de qué banco)?
 4. **¿Solo tú,** o también gastos compartidos (pareja o piso) con reparto?
 5. **Cuentas de liquidez:** ¿cuántas cuentas o bancos hay que tener en cuenta para el fondo de emergencia?
+6. **Modelo de IA:** ¿Claude Opus 5.5 (más preciso, unos 4–5 $/mes) o Claude Haiku 5.5 (céntimos al mes)? ¿Qué límite de gasto mensual ponemos?
+7. **Capturas de movimientos:** ¿de qué app de banco serán? Así ajusto la lectura a ese formato.
