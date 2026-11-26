@@ -1,0 +1,31 @@
+# Copia este archivo como carteras.yaml y pon tus datos reales.
+# carteras.yaml está en .gitignore: tus posiciones NO se suben a GitHub.
+#
+# ticker: símbolo de Yahoo Finance (para actualizar precios con /precios).
+#         Usa "CASH" para efectivo.
+# clase:  una de las claves de "objetivo" en estrategia.yaml
+carteras:
+  - nombre: "Broker indexados"
+    posiciones:
+      - ticker: IWDA.AS
+        nombre: "iShares Core MSCI World"
+        clase: renta_variable_global
+        participaciones: 120
+        precio: 98.50
+      - ticker: EMIM.AS
+        nombre: "iShares Core MSCI EM IMI"
+        clase: renta_variable_emergentes
+        participaciones: 40
+        precio: 33.10
+      - ticker: AGGH.AS
+        nombre: "iShares Global Aggregate Bond (EUR Hedged)"
+        clase: renta_fija
+        participaciones: 300
+        precio: 4.95
+  - nombre: "Cuenta remunerada"
+    posiciones:
+      - ticker: CASH
+        nombre: "Efectivo"
+        clase: liquidez
+        participaciones: 900
+        precio: 1

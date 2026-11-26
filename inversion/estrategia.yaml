@@ -1,0 +1,40 @@
+# ============================================================
+#  MI ESTRATEGIA FIJA  — se cambia como mucho 1 vez al año,
+#  en frío, nunca después de una noticia o una caída.
+# ============================================================
+nombre: "Cartera indexada de largo plazo"
+moneda: EUR
+revision_anual: "enero"          # único momento para tocar este archivo
+
+# Reparto objetivo por clase de activo (debe sumar 100)
+objetivo:
+  renta_variable_global: 70
+  renta_variable_emergentes: 10
+  renta_fija: 15
+  liquidez: 5
+
+# Si una clase se desvía más de estos puntos (absolutos) del objetivo,
+# toca rebalancear. Dentro de la banda: NO se hace nada.
+banda_rebalanceo: 5
+
+# Aportación periódica automática (DCA)
+aportacion_mensual: 300
+dia_aportacion: 5               # día del mes en que el bot te lo recuerda
+
+# Horas que debe esperar cualquier operación fuera del plan
+enfriamiento_horas: 72
+
+reglas:
+  - "Aporto cada mes la misma cantidad, pase lo que pase en el mercado."
+  - "No vendo por caídas: una caída es comprar más barato con la aportación."
+  - "Solo rebalanceo si una clase se sale de la banda."
+  - "Rebalanceo primero con aportaciones; vender es el último recurso."
+  - "Nada de operaciones por noticias, redes sociales o 'chivatazos'."
+  - "Cualquier operación fuera del plan espera el periodo de enfriamiento."
+
+checklist_operacion:
+  - "¿Está esta operación en mi plan escrito? Si no, ¿por qué la quiero hacer?"
+  - "¿Ha cambiado mi objetivo vital o mi horizonte temporal (no el mercado)?"
+  - "¿La estoy pensando por una noticia, miedo o euforia de los últimos días?"
+  - "¿Haría esta operación si el mercado llevara 1 mes plano?"
+  - "¿Qué haría si en 1 año resulta que me equivoqué?"
