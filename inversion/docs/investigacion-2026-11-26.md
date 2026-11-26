@@ -29,6 +29,8 @@
 
 `kit.py` es idéntico en `ml-engineering-playbook`, así que tiene el mismo fallo. Tal como está publicado, el kit no se puede ejecutar siguiendo sus propias instrucciones.
 
+**Arreglado (2026-11-26)** en la rama `claude/elegant-noether-8104mp` de los dos playbooks. Se ha verificado ejecutando `kit.py seleccionar/tabla` y el instalador completo (generar → instalar → verificar → deshacer) con el perfil de ejemplo de la documentación.
+
 **Encaje con este proyecto.** El kit está pensado para plataformas web: FastAPI, OpenAPI, `/health`, OIDC y Docker Compose. Este proyecto es un bot de Telegram con un panel Streamlit y SQLite, para un solo usuario. Lo que encaja directamente:
 - estructura por capas;
 - `CLAUDE.md`, ADR, CHANGELOG;
@@ -53,7 +55,14 @@ Lo que hay que adaptar y dejar escrito en el ADR 0001:
 - **Alternativa:** con estos precios, un mini PC x86 de segunda mano o de gama baja cuesta parecido. Además evita los problemas de Claude Code en ARM:
   - hay incidencias abiertas en GitHub sobre el instalador nativo en Raspberry (arm64), con instalaciones que dicen terminar bien sin haberlo hecho;
   - hay problemas de login en Pi 4.
-- **Decisión pendiente:** Pi 5 de 8 GB (más bonito, menos consumo) o mini PC (menos riesgo con Claude Code, misma inversión).
+- **Decidido: Pi 5 de 8 GB + SSD.** Lista de la compra:
+  - Raspberry Pi 5 de 8 GB.
+  - Fuente oficial USB-C de 27 W.
+  - Carcasa con ventilador activo, o la Active Cooler oficial.
+  - Adaptador M.2 NVMe (HAT oficial o equivalente).
+  - SSD NVMe 2230/2242 de 256–512 GB.
+  - Tarjeta microSD pequeña, solo para el primer arranque si hace falta.
+- Instalar Raspberry Pi OS Lite de 64 bits en el SSD. Al instalar Claude Code, comprobar después que el binario existe de verdad (`claude --version`), por la incidencia del instalador en arm64.
 
 ## 3. Repos existentes que se pueden aprovechar
 
