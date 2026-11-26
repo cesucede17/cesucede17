@@ -114,11 +114,20 @@ Usa la **API de Claude** desde la Raspberry (SDK oficial `anthropic` en Python).
 - **Ajustar parámetros de inversión:** Claude puede *proponer* un cambio en `estrategia.yaml` con su simulación (cómo quedaría el reparto, las aportaciones y el rebalanceo). La propuesta **pasa por la misma espera de 72 h** que cualquier operación. Claude nunca modifica la estrategia ni registra operaciones por su cuenta.
 - Las instrucciones de Claude lo atan a tu estrategia escrita: responde con tus datos y reglas, y no da recomendaciones de compra o venta de valores concretos.
 
-**Coste y privacidad**
-- Hace falta una **clave de API** de console.anthropic.com. Se paga por uso con saldo prepago, y se puede poner un **límite de gasto mensual** en la consola.
-  - La suscripción de claude.ai (la cuenta con la que hablas conmigo) **no sirve** para que un bot llame a Claude: se factura aparte.
+**Cómo se conecta a Claude: dos opciones, el bot sirve para ambas**
+
+| | A) Tu suscripción (por defecto) | B) Clave de API |
+|---|---|---|
+| Cómo | Claude Code instalado en la Raspberry, con `claude login` hecho una vez con tu cuenta. El bot llama a `claude -p --model …` | Clave de console.anthropic.com en `.env` |
+| Coste | **0 € extra**: consume de los límites de tu plan, compartidos con tu uso normal de Claude y Claude Code | Pago por uso. Con plan Max, Ultra o Team incluye créditos de API mensuales (Max: 100 $/mes) |
+| Límite | Si agotas el límite del plan, el bot espera hasta que se renueve | Tope de gasto opcional en la consola |
+| API de lotes (-50 %) | No disponible | Sí |
+| Condiciones | Solo para ti: no se comparte el bot con nadie y nunca se copian ni se guardan los tokens de sesión | Sin restricciones |
+
+La opción se elige en `modelos.yaml` (`proveedor: suscripcion | api`).
+
 - Las fotos y los datos que se consultan se envían a la API de Anthropic para procesarlos. La base de datos completa sigue en la Raspberry.
-- La clave se guarda en un archivo `.env` de la Raspberry, nunca en el repositorio.
+- Si usas clave de API, se guarda en un archivo `.env` de la Raspberry, nunca en el repositorio.
 
 ### Elección dinámica del modelo según la dificultad
 
@@ -149,7 +158,7 @@ Candidatos, con precio por millón de tokens de entrada/salida y coste aproximad
 Se comparan **Claude Opus 5.5, Claude Sonnet 5.5 y Claude Haiku 5.5** con tus datos reales.
 
 **Tickets y capturas:** cada imagen se procesa también con los otros modelos "en sombra". Tú solo ves el resultado del modelo principal.
-- Para ahorrar, las ejecuciones en sombra van por la noche con la **API de lotes** (Batch API), que cuesta la mitad.
+- Las ejecuciones en sombra van por la noche, para no competir con tu uso de día. Con clave de API usarían la **API de lotes** (Batch API), que cuesta la mitad.
 - Lo que tú confirmas o corriges se toma como la respuesta correcta.
 - Para cada modelo se mide el acierto en total, fecha, comercio y categoría de cada línea, y en las capturas qué movimientos detectó y cuáles se inventó.
 
@@ -159,7 +168,7 @@ Se comparan **Claude Opus 5.5, Claude Sonnet 5.5 y Claude Haiku 5.5** con tus da
 
 **Regla de decisión:** para cada tarea se elige **el modelo más barato que queda a menos de 2 puntos del mejor**. Con eso se actualiza `modelos.yaml`.
 
-**Coste estimado de la prueba:** unos 5–8 $ en total (60 tickets en sombra con los 3 modelos + unas 50 preguntas a ciegas).
+**Coste de la prueba:** con la suscripción, 0 € extra, pero consume más límite del plan, porque cada ticket se procesa 3 veces. Con clave de API serían unos 5–8 $.
 
 ### Interfaz del bot
 - **Menú fijo** con 4 botones: `➕ Gasto` · `📊 Mes` · `⚖️ Balance` · `💼 Inversión`.
@@ -192,5 +201,5 @@ Se comparan **Claude Opus 5.5, Claude Sonnet 5.5 y Claude Haiku 5.5** con tus da
 3. **Gastos con tarjeta:** ¿basta con apuntarlos a mano, o quieres importar el CSV del banco (y de qué banco)?
 4. **¿Solo tú,** o también gastos compartidos (pareja o piso) con reparto?
 5. **Cuentas de liquidez:** ¿cuántas cuentas o bancos hay que tener en cuenta para el fondo de emergencia?
-6. ~~Modelo de IA~~ → **decidido:** escalera dinámica + periodo de prueba Opus 5.5 / Sonnet 5.5 / Haiku 5.5. Falta: ¿qué **límite de gasto mensual** ponemos en la consola? (sugerencia: 10 $ durante la prueba, 5 $ después).
+6. ~~Modelo de IA~~ → **decidido:** escalera dinámica + periodo de prueba Opus 5.5 / Sonnet 5.5 / Haiku 5.5. Conexión: **tu suscripción** a través de Claude Code (opción A). Falta: ¿qué plan tienes (Pro, Max…)?
 7. **Bancos:** son varios. ¿Cuáles son? Así preparo las pistas de cada uno en `bancos.yaml` y miro cuáles permiten exportar CSV.
