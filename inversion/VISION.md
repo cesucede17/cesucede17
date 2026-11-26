@@ -98,6 +98,10 @@ Usa la **API de Claude** desde la Raspberry (SDK oficial `anthropic` en Python).
 - Claude saca todos los movimientos de la imagen y propone una categoría para cada uno.
 - El bot **detecta duplicados** con lo que ya está registrado (mismo importe, fecha y comercio) y te pide confirmar la lista.
 - Así cuadras los gastos con tarjeta que no apuntaste a mano.
+- **Varios bancos:** en `bancos.yaml` se configura cada banco y cuenta (nombre, formato de fecha, si los gastos salen en negativo…). Esas pistas se le pasan a Claude según el banco.
+  - Cada movimiento queda asociado a su banco y cuenta.
+  - **Transferencias entre tus propias cuentas:** se detectan (sale X de un banco y entra X en otro en ±2 días) y **no cuentan como gasto**.
+  - Más adelante, para los bancos que lo permitan, se puede importar el **CSV del extracto** sin IA: es gratis y exacto.
 
 **c) Preguntas en lenguaje natural**
 - Ejemplos: *"¿cuánto gasté en ocio este trimestre comparado con el anterior?"*, *"¿cuánto puedo invertir este mes sin tocar el fondo de emergencia?"*, *"¿qué pasa si subo la renta fija al 20 %?"*.
@@ -113,11 +117,49 @@ Usa la **API de Claude** desde la Raspberry (SDK oficial `anthropic` en Python).
 **Coste y privacidad**
 - Hace falta una **clave de API** de console.anthropic.com. Se paga por uso con saldo prepago, y se puede poner un **límite de gasto mensual** en la consola.
   - La suscripción de claude.ai (la cuenta con la que hablas conmigo) **no sirve** para que un bot llame a Claude: se factura aparte.
-- Modelo por defecto: **Claude Opus 5.5** ($4 / $20 por millón de tokens de entrada/salida).
-  - Estimación: unos **0,03 $ por ticket** y unos **0,05 $ por pregunta**. Con 60 tickets y 50 preguntas al mes salen **unos 4–5 $/mes**.
-  - Opción más barata: **Claude Haiku 5.5** ($0,10 / $0,50), unas 40 veces menos (céntimos al mes). Es algo menos preciso con tickets difíciles.
 - Las fotos y los datos que se consultan se envían a la API de Anthropic para procesarlos. La base de datos completa sigue en la Raspberry.
 - La clave se guarda en un archivo `.env` de la Raspberry, nunca en el repositorio.
+
+### Elección dinámica del modelo según la dificultad
+
+Candidatos, con precio por millón de tokens de entrada/salida y coste aproximado:
+
+| Modelo | Precio | Por ticket | Por pregunta |
+|---|---|---|---|
+| Claude Haiku 5.5 | $0,10 / $0,50 | ~0,001 $ | ~0,002 $ |
+| Claude Sonnet 5.5 | $2 / $10 | ~0,015 $ | ~0,025 $ |
+| Claude Opus 5.5 | $4 / $20 | ~0,03 $ | ~0,05 $ |
+
+**Escalera con comprobaciones objetivas.** Se empieza por el modelo barato y solo se sube de nivel si el resultado falla alguna comprobación que el bot hace sin IA:
+
+| Tarea | Empieza en | Sube de nivel si… |
+|---|---|---|
+| Ticket | Haiku | la suma de las líneas no cuadra con el total (±0,02 €), falta la fecha o el comercio, o hay alguna línea con confianza baja |
+| Captura de banco | Sonnet | el número de movimientos o los saldos no cuadran, o hay fechas imposibles |
+| Pregunta sencilla ("¿cuánto gasté en X?") | Haiku | — |
+| Análisis o comparación | Sonnet | — |
+| Propuesta de cambio de estrategia | Opus | — |
+
+- El tipo de pregunta lo decide primero una llamada muy barata a Haiku, que devuelve `sencilla`, `analisis` o `estrategia`.
+- Si tú corriges el resultado, eso cuenta como un fallo de ese modelo para esa tarea.
+- La configuración vive en `modelos.yaml`, editable sin tocar el código. Para cada tarea indica el modelo inicial, la escalera y el esfuerzo de razonamiento (*effort*).
+
+### Periodo de prueba para elegir los modelos definitivos (2–4 semanas)
+
+Se comparan **Claude Opus 5.5, Claude Sonnet 5.5 y Claude Haiku 5.5** con tus datos reales.
+
+**Tickets y capturas:** cada imagen se procesa también con los otros modelos "en sombra". Tú solo ves el resultado del modelo principal.
+- Para ahorrar, las ejecuciones en sombra van por la noche con la **API de lotes** (Batch API), que cuesta la mitad.
+- Lo que tú confirmas o corriges se toma como la respuesta correcta.
+- Para cada modelo se mide el acierto en total, fecha, comercio y categoría de cada línea, y en las capturas qué movimientos detectó y cuáles se inventó.
+
+**Preguntas:** prueba **a ciegas**. Para cada pregunta, el bot te enseña dos respuestas (A y B, de modelos distintos y sin decirte cuál es cuál) y tú pulsas `A mejor` · `B mejor` · `Igual`.
+
+**Informe `/evaluacion`:** para cada tarea y modelo muestra el % de acierto o de preferencia, el coste por cada 100 usos, el tiempo de respuesta y cuántas veces hubo que subir de nivel.
+
+**Regla de decisión:** para cada tarea se elige **el modelo más barato que queda a menos de 2 puntos del mejor**. Con eso se actualiza `modelos.yaml`.
+
+**Coste estimado de la prueba:** unos 5–8 $ en total (60 tickets en sombra con los 3 modelos + unas 50 preguntas a ciegas).
 
 ### Interfaz del bot
 - **Menú fijo** con 4 botones: `➕ Gasto` · `📊 Mes` · `⚖️ Balance` · `💼 Inversión`.
@@ -140,7 +182,7 @@ Usa la **API de Claude** desde la Raspberry (SDK oficial `anthropic` en Python).
 2. **Control:** presupuestos, gastos fijos recurrentes, avisos, `/recortar` y gráficos.
 3. **Puente:** balance, tasa de ahorro, fondo de emergencia, Inversiones como aportación y patrimonio neto.
 4. **Raspberry:** systemd, copias de seguridad y panel ampliado con gastos e histórico.
-5. **IA:** lectura de tickets → capturas del banco con detección de duplicados → preguntas con herramientas → propuestas de ajuste de la estrategia con espera de 72 h.
+5. **IA:** lectura de tickets con escalera de modelos → capturas de varios bancos con duplicados y transferencias internas → preguntas con herramientas → **periodo de prueba** (sombra + prueba a ciegas + `/evaluacion`) → modelos definitivos en `modelos.yaml` → propuestas de estrategia con espera de 72 h.
 
 ---
 
@@ -150,5 +192,5 @@ Usa la **API de Claude** desde la Raspberry (SDK oficial `anthropic` en Python).
 3. **Gastos con tarjeta:** ¿basta con apuntarlos a mano, o quieres importar el CSV del banco (y de qué banco)?
 4. **¿Solo tú,** o también gastos compartidos (pareja o piso) con reparto?
 5. **Cuentas de liquidez:** ¿cuántas cuentas o bancos hay que tener en cuenta para el fondo de emergencia?
-6. **Modelo de IA:** ¿Claude Opus 5.5 (más preciso, unos 4–5 $/mes) o Claude Haiku 5.5 (céntimos al mes)? ¿Qué límite de gasto mensual ponemos?
-7. **Capturas de movimientos:** ¿de qué app de banco serán? Así ajusto la lectura a ese formato.
+6. ~~Modelo de IA~~ → **decidido:** escalera dinámica + periodo de prueba Opus 5.5 / Sonnet 5.5 / Haiku 5.5. Falta: ¿qué **límite de gasto mensual** ponemos en la consola? (sugerencia: 10 $ durante la prueba, 5 $ después).
+7. **Bancos:** son varios. ¿Cuáles son? Así preparo las pistas de cada uno en `bancos.yaml` y miro cuáles permiten exportar CSV.
