@@ -118,3 +118,18 @@ No he encontrado ofertas de Black Friday confirmadas en España para estas confi
 - > 300 € → esperar o volver a la Pi.
 
 Comprar en Amazon.es (vendido o enviado por Amazon) o en PcComponentes, por la devolución de 30 días y la garantía europea de 3 años. Se le borra Windows y se instala Ubuntu Server 24.04 LTS.
+
+### Actualización (27-11-2026, Black Friday): "este proyecto y alguno más"
+
+Para tener margen para varios proyectos (Docker, varios servicios, proyectos de datos), sube un escalón: un **Ryzen 5 con RAM DDR5 ampliable (SO-DIMM)**. No he podido verificar precios de Black Friday en euros en directo, así que los umbrales son orientativos.
+
+| Gama | Ejemplos | Comprar si cuesta… |
+|---|---|---|
+| Ahorro | N150 16/512 (GMKtec G3 Plus, Beelink EQ14) | ≤ 250 € |
+| **Recomendada** | Ryzen 5 6600H / 7430U / 7640HS, 16 GB DDR5 SO-DIMM, 512 GB–1 TB (GMKtec M6 Ultra; Blackview MP100PRO marcado "Top Black Friday" en PcComponentes) | ≤ 350 € con 16/512; ≤ 450 € con 32 GB/1 TB |
+| Solo para IA en local | Ryzen 7 8745HS/8845HS 32 GB (Beelink SER8, GMKtec K8 Plus) | ≤ 600 € |
+
+Antes de comprar:
+- Que la RAM sea **SO-DIMM**: muchos Ryzen AI llevan LPDDR5X soldada y no se puede ampliar.
+- Mirar el historial de precios (Keepa o camelcamelcamel en Amazon.es). Varias marcas subieron precios en noviembre.
+- Mejor marcas con soporte y BIOS actualizada (GMKtec, Beelink, Minisforum), compradas en Amazon.es o PcComponentes.
